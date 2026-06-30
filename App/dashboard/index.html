@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Room thực tập IOT</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="title-area">
+                <h1>🏠 Smart Room</h1>
+                <p class="subtitle">Thực tập IOT</p>
+            </div>
+            <div class="action-area">
+                <div id="realtime-clock" class="clock">00:00:00</div>
+                <button id="enableAlarmBtn" class="alarm-btn">🔔 Bật âm thanh cảnh báo</button>
+            </div>
+        </div>
+    </header>
+
+    <audio id="alarm" src="alarm.mp3" preload="auto"></audio>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-target="stationA-card">🛋️ Phòng Khách</button>
+            <button class="tab-btn" data-target="stationB-card">🛏️ Phòng Ngủ</button>
+            <button class="tab-btn" data-target="stationC-card">🍳 Phòng Bếp</button>
+        </div>
+
+        <!-- PHÒNG KHÁCH -->
+        <div id="stationA-card" class="station-card active-card">
+            <div class="card-cover" style="background-image: url('./khach.jpg');">
+                <div class="cover-overlay">
+                    <h2>Phòng Khách <span class="device-tag">ESP32 Thực</span></h2>
+                    <div id="statusA" class="status-badge normal">Đang kết nối...</div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="info-grid">
+                    <div class="info-box">
+                        <span class="box-label">Nhiệt độ hiện tại</span>
+                        <span class="box-value" id="tempA">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">Độ ẩm hiện tại</span>
+                        <span class="box-value" id="humA">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">MQ135 hiện tại</span>
+                        <span class="box-value" id="gasA">--</span>
+                    </div>
+                    <div class="info-box fan-box">
+                        <div class="fan-header">
+                            <span class="box-label fan-title">Trạng thái Quạt</span>
+                            <button id="fanModeA" class="mode-btn auto">AUTO</button>
+                        </div>
+                        <img src="./fanoff.png" id="fanA" class="fan-icon" alt="Quạt" title="Click để Bật/Tắt">
+                        <span id="fanStatusA" class="fan-status-pill status-off">TẮT</span>
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h3 class="section-title">🔮 AI Dự Báo Bước Tiếp Theo</h3>
+                    <div class="info-grid forecast-grid">
+                        <div class="info-box ai-box">
+                            <span class="box-label">Nhiệt độ</span>
+                            <span class="box-value" id="predTempA">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Độ ẩm</span>
+                            <span class="box-value" id="predHumA">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Khí Gas (MQ135)</span>
+                            <span class="box-value" id="predGasA">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="chartA"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHÒNG NGỦ -->
+        <div id="stationB-card" class="station-card">
+            <div class="card-cover" style="background-image: url('./ngu.jpg');">
+                <div class="cover-overlay">
+                    <h2>Phòng Ngủ <span class="device-tag">ESP32 Thực</span></h2>
+                    <div id="statusB" class="status-badge normal">Đang kết nối...</div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="info-grid">
+                    <div class="info-box">
+                        <span class="box-label">Nhiệt độ hiện tại</span>
+                        <span class="box-value" id="tempB">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">Độ ẩm hiện tại</span>
+                        <span class="box-value" id="humB">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">MQ135 hiện tại</span>
+                        <span class="box-value" id="gasB">--</span>
+                    </div>
+                    <div class="info-box fan-box">
+                        <div class="fan-header">
+                            <span class="box-label fan-title">Trạng thái Quạt</span>
+                            <button id="fanModeB" class="mode-btn auto">AUTO</button>
+                        </div>
+                        <img src="./fanoff.png" id="fanB" class="fan-icon" alt="Quạt" title="Click để Bật/Tắt">
+                        <span id="fanStatusB" class="fan-status-pill status-off">TẮT</span>
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h3 class="section-title">🔮 AI Dự Báo Bước Tiếp Theo</h3>
+                    <div class="info-grid forecast-grid">
+                        <div class="info-box ai-box">
+                            <span class="box-label">Nhiệt độ</span>
+                            <span class="box-value" id="predTempB">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Độ ẩm</span>
+                            <span class="box-value" id="predHumB">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Khí Gas (MQ135)</span>
+                            <span class="box-value" id="predGasB">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="chartB"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHÒNG BẾP -->
+        <div id="stationC-card" class="station-card">
+            <div class="card-cover" style="background-image: url('./bep.jpg');">
+                <div class="cover-overlay">
+                    <h2>Phòng Bếp <span class="device-tag spec">Wokwi Sim</span></h2>
+                    <div id="statusC" class="status-badge normal">Đang kết nối...</div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="info-grid">
+                    <div class="info-box">
+                        <span class="box-label">Nhiệt độ hiện tại</span>
+                        <span class="box-value" id="tempC">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">Độ ẩm hiện tại</span>
+                        <span class="box-value" id="humC">--</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="box-label">MQ135 hiện tại</span>
+                        <span class="box-value" id="gasC">--</span>
+                    </div>
+                    <div class="info-box fan-box">
+                        <div class="fan-header">
+                            <span class="box-label fan-title">Trạng thái Quạt</span>
+                            <button id="fanModeC" class="mode-btn auto">AUTO</button>
+                        </div>
+                        <img src="./fanoff.png" id="fanC" class="fan-icon" alt="Quạt" title="Click để Bật/Tắt">
+                        <span id="fanStatusC" class="fan-status-pill status-off">TẮT</span>
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h3 class="section-title">🔮 AI Dự Báo Bước Tiếp Theo</h3>
+                    <div class="info-grid forecast-grid">
+                        <div class="info-box ai-box">
+                            <span class="box-label">Nhiệt độ</span>
+                            <span class="box-value" id="predTempC">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Độ ẩm</span>
+                            <span class="box-value" id="predHumC">--</span>
+                        </div>
+                        <div class="info-box ai-box">
+                            <span class="box-label">Khí Gas (MQ135)</span>
+                            <span class="box-value" id="predGasC">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="chartC"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="danger-popup">
+        <div class="popup-content">
+            <h2>⚠️ CẢNH BÁO NGUY HIỂM ⚠️</h2>
+            <p>Phát hiện nguy cơ cháy nổ từ hệ thống cảm biến!</p>
+            <button id="close-popup">Đóng hệ thống báo động</button>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        <button id="chat-toggle-btn" class="chat-toggle-btn">💬 Chat với Trợ lý AI</button>
+        <div id="chat-window" class="chat-window hidden">
+            <div class="chat-header">
+                <h3>🤖 Trợ lý Smart Room</h3>
+                <button id="chat-close-btn">&times;</button>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-msg bot-msg">
+                    Xin chào! Bạn đang xem thông số hệ thống. Bạn có thể yêu cầu tôi:<br> - Xem: <strong>nhiệt độ, độ ẩm, khí gas</strong><br> - Điều khiển: <strong>bật quạt, tắt quạt, quạt tự động</strong><br> - Hệ thống: <strong>bật cảnh báo, tắt cảnh báo</strong>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Nhập lệnh (VD: bật quạt)..." autocomplete="off">
+                <button id="chat-send-btn">Gửi</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-label">Người thực hiện:</span>
+                <div class="student-list">
+                    <strong>Nguyễn Thanh Tân 23161188</strong>
+                    <strong>Nguyễn Hoàng Trọng Phúc 23161188</strong>
+                </div>
+            </div>
+            <div class="footer-right">
+                <span class="footer-label">GVHD:</span>
+                <strong class="teacher-name">Trương Quang Phúc</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

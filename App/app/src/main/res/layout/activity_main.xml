@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FAFC">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TIÊU ĐỀ ỨNG DỤNG -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🏠 SMART ROOM IOT"
+            android:textColor="#0F172A"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- ========================================== -->
+        <!-- KHU VỰC PHÒNG KHÁCH (STATION A) -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛋️ Phòng Khách (Station A)"
+                android:textColor="#2563EB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTempA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhiệt độ: -- °C"
+                android:textSize="15sp"
+                android:textColor="#FF5722"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/txtHumA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Độ ẩm: -- %"
+                android:textSize="15sp"
+                android:textColor="#2196F3"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/txtGasA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khí Gas (MQ135): --"
+                android:textSize="15sp"
+                android:textColor="#4CAF50"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+
+            <!-- Đường kẻ ngang phân cách -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E2E8F0"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Khu vực điều khiển thiết bị -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Trạng thái Quạt:"
+                    android:textSize="16sp"
+                    android:textColor="#334155"
+                    android:textStyle="bold"/>
+
+                <Switch
+                    android:id="@+id/switchFanA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ========================================== -->
+        <!-- KHU VỰC PHÒNG NGỦ (STATION B) -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛏️ Phòng Ngủ (Station B)"
+                android:textColor="#2563EB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTempB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhiệt độ: -- °C"
+                android:textSize="15sp"
+                android:textColor="#FF5722"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/txtHumB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Độ ẩm: -- %"
+                android:textSize="15sp"
+                android:textColor="#2196F3"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/txtGasB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khí Gas (MQ135): --"
+                android:textSize="15sp"
+                android:textColor="#4CAF50"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- ========================================== -->
+        <!-- KHU VỰC PHÒNG BẾP (STATION C) -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍳 Phòng Bếp (Station C)"
+                android:textColor="#2563EB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTempC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhiệt độ: -- °C"
+                android:textSize="15sp"
+                android:textColor="#FF5722"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/txtHumC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Độ ẩm: -- %"
+                android:textSize="15sp"
+                android:textColor="#2196F3"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/txtGasC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khí Gas (MQ135): --"
+                android:textSize="15sp"
+                android:textColor="#4CAF50"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

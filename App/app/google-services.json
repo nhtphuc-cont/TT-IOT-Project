@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "239727884719",
+    "firebase_url": "https://smart-d6b1d-default-rtdb.firebaseio.com",
+    "project_id": "smart-d6b1d",
+    "storage_bucket": "smart-d6b1d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239727884719:android:0c7643b29ae4e4ccd5975a",
+        "android_client_info": {
+          "package_name": "com.example.smartroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMYc2SzuxlLQfYOnpLI5vimvM9-6-Ytmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
